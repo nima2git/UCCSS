@@ -1,0 +1,14 @@
+{
+  "name": "uccss",
+  "version": "1.0.0",
+  "description": "doing this as part of a practice video for 810 - hightower class on using npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nima Lendey",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
