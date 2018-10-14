@@ -9,5 +9,3 @@ app.get('/', function(req,res){
 });
 
 app.listen(3300);  // This starts the server, using the listen method on port 3300
-
-
