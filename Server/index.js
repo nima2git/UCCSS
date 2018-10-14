@@ -1,6 +1,6 @@
 //FROM GRUNT PP SLIDE 13, AS PART OF 
 
-var express = require('express');
+var express = require('./lib/express');
 
 var app = express();
 
