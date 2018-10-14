@@ -5,11 +5,9 @@ var express = require('express');
 var app = express();
 
 app.get('/', function(req,res){
-	res.send('Hello World!');
+	res.send('Hello Nima & World!');
 });
 
 app.listen(3300);  // This starts the server, using the listen method on port 3300
-
-
 
 
