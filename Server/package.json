@@ -10,11 +10,16 @@
   "author": "Nima Lendey",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "grunt": "^1.0.3",
     "grunt-contrib-jshint": "^2.0.0",
     "grunt-contrib-nodemon": "^0.5.4",
-    "grunt-env": "^0.4.4"
+    "grunt-env": "^0.4.4",
+    "jshint-stylish": "^2.2.1",
+    "morgan": "^1.9.1",
+    "winston": "^3.1.0",
+    "winston-daily-rotate-file": "^3.3.3"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
