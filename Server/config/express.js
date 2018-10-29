@@ -2,17 +2,52 @@ var express = require('express');
 var morgan = require('morgan');
 var logger = require('./logger');
 var bodyParser = require('body-parser');
+var glob = require('glob');
+
+var mongoose = require('mongoose');
+var bluebird = require('bluebird');
 
 module.exports = function (app, config) {
 
-  app.use(function (req, res, next) {
-    logger.log('info', 'Request from ' + req.connection.remoteAddress);
-    next();
+  //ADDED FROM 'FIRST STEPS WITH MONGOOSE' PP, SLIDE 22
+  logger.log('info', "Loading Mongoose functionality");
+  mongoose.Promise = bluebird;
+  mongoose.connect(config.db);
+  var db = mongoose.connection;
+  db.on('error', function () {
+    throw new Error('unable to connect to database at ' + config.db);
   });
 
-  app.use(morgan('dev'));
 
-  app.use(bodyParser.urlencoded({ 
+
+  // app.use(function (req, res, next) {
+  //   logger.log('info', 'Request from ' + req.connection.remoteAddress);
+  //   next();
+  // });
+  // app.use(morgan('dev'));
+
+
+
+  //THIS CODE BELOW IS THE SAME AS THE ONE ABOVE, WE ARE JUST ADDING THE IF STATEMENT SO THAT
+  //THE SYSTEM DOESNT LOG WHEN IN TESTING ENVIRONMENT
+  if (process.env.NODE_ENV !== 'test') {
+    app.use(morgan('dev'));
+
+    mongoose.set('debug', true);
+    mongoose.connection.once('open', function callback() {
+      logger.log('info', 'Mongoose connected to the database');
+    });
+
+    app.use(function (req, res, next) {
+      logger.log('Request from ' + req.connection.remoteAddress, 'info');
+      next();
+    });
+  }
+
+
+
+
+  app.use(bodyParser.urlencoded({
     extended: true
   }));
 
@@ -20,25 +55,58 @@ module.exports = function (app, config) {
 
   app.use(express.static(config.root + '/public'));
 
-  require('../app/controllers/users')(app, config);
+
+  //This portion of code makes it so it gets called before the data is returned back to users in the next block
+  //of code
+  
+  // var users = [{ name: 'John', email: 'woo@hoo.com' },
+  // { name: 'Betty', email: 'loo@woo.com' },
+  // { name: 'Hal', email: 'boo@woo.com' }
+  // ];
+
+  // app.get('/api/users', function (req, res) {
+  //   res.status(200).json(users);
+  // });
 
 
 
 
-  // //From Express routing PP, slide 5
-  // app.get('/willwork',
-  //   function (req, res, next) {
-  //     res.set('X-One', 'One');
-  //     next();
-  //   },
-  //   function (req, res, next) {
-  //     res.set('X-Two', 'Two');
-  //     next();
-  //   },
-  //   function (req, res) {
-  //     res.send("Three");
-  //   }
-  // );
+
+
+  var models = glob.sync(config.root + '/app/models/*.js');
+  models.forEach(function (model) {
+    require(model);
+  });
+
+  var controllers = glob.sync(config.root + '/app/controllers/*.js');
+  controllers.forEach(function (controller) {
+    require(controller)(app, config);
+  });
+
+
+
+
+
+
+
+
+  //From Express routing PP, slide 5
+  app.get('/willwork',
+    function (req, res, next) {
+      res.set('X-One', 'One');
+      next();
+    },
+    function (req, res, next) {
+      res.set('X-Two', 'Two');
+      next();
+    },
+    function (req, res) {
+      res.send("Three");
+    }
+  );
+
+
+
 
 
 

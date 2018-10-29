@@ -201,3 +201,8 @@ require('./config/express')(app, config);
 require('http').createServer(app).listen(port, function () {
     logger.log('info', "HTTP Server listening on port: %d, in %s mode", config.port, app.get('env'));
 });
+
+
+//From unit testing PP, slide 10
+//This makes the express object available to the test module so it can access the app's api
+module.exports = app;
