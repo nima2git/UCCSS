@@ -1,6 +1,6 @@
 var express = require('express'),
     router = express.Router(),
-    logger = require('../../config/logger'),
+    logger = require('../../Configuration/logger'),
     mongoose = require('mongoose')
 Todo = mongoose.model('todo'),
     asyncHandler = require('express-async-handler');

@@ -6,7 +6,7 @@ var config = {
     // production: {
         root: rootPath,
         app: { name: 'Todo' },
-        port: 3300,
+        port: 3500,
         db: 'mongodb://127.0.0.1/todo' 
     // }
 };

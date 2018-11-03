@@ -44,8 +44,8 @@ logger.log('info', "Loading Mongoose functionality");
 
 
 //PROFESSOR ADDED THIS LAST PART HELP ROUTE THE FUNCTIONS WRITEN IN APP FOLDERS FOR CONTROLLERS AND MODELS
-  require('../app/models/todo');
-  require('../app/controllers/todo')(app, config);
+  require('../Application/models/todo');
+  require('../Application/controllers/todo')(app, config);
 
   app.use(function (req, res) {
     logger.log('error', 'File not found');

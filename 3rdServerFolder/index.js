@@ -1,11 +1,11 @@
 var express = require('express');
-var config = require('./config/config');  // not a node module so we have to add the path
-var logger = require('./config/logger')
+var config = require('./Configuration/config');  // not a node module so we have to add the path
+var logger = require('./Configuration/logger')  //calls the code in folder Configuration/logger
 console.log(config)
 var app = express();
-var port = process.env.port || 3300;
+var port = process.env.port || 3500;
 
-require('./config/express')(app, config);
+require('./Configuration/express')(app, config);  //calls the code in folder Configuration/express
 
 require('http').createServer(app).listen(port, function () {
     logger.log('info', "HTTP Server listening on port: %d, in %s mode", config.port, app.get('env'));
