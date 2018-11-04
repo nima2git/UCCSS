@@ -43,7 +43,7 @@ logger.log('info', "Loading Mongoose functionality");
   app.use(express.static(config.root + '/public'));
 
 
-//PROFESSOR ADDED THIS LAST PART HELP ROUTE THE FUNCTIONS WRITEN IN APP FOLDERS FOR CONTROLLERS AND MODELS
+//PROFESSOR ADDED THIS LAST PART TO HELP ROUTE THE FUNCTIONS WRITEN IN APP FOLDERS FOR CONTROLLERS AND MODELS
   require('../app/models/todo');
   require('../app/controllers/todo')(app, config);
 
