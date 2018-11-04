@@ -2,7 +2,8 @@ var express = require('express'),
     router = express.Router(),
     logger = require('../../config/logger'),
     mongoose = require('mongoose')
-Todo = mongoose.model('todo'),
+// BY CONVENTION THE "Todo" is always uppercase
+    Todo = mongoose.model('todo'),
     asyncHandler = require('express-async-handler');
 
 

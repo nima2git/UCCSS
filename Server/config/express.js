@@ -4,7 +4,7 @@ var logger = require('./logger');
 var bodyParser = require('body-parser');
 var glob = require('glob');
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose');  //ADDED FROM 'FIRST STEPS WITH MONGOOSE' PP, SLIDE 22
 var bluebird = require('bluebird');
 
 module.exports = function (app, config) {
@@ -29,7 +29,7 @@ module.exports = function (app, config) {
 
 
   //THIS CODE BELOW IS THE SAME AS THE ONE ABOVE, WE ARE JUST ADDING THE IF STATEMENT SO THAT
-  //THE SYSTEM DOESNT LOG WHEN IN TESTING ENVIRONMENT
+  //THE SYSTEM DOES NOT LOG TO CONSOLE WHEN IN TESTING ENVIRONMENT
   if (process.env.NODE_ENV !== 'test') {
     app.use(morgan('dev'));
 
@@ -70,14 +70,21 @@ module.exports = function (app, config) {
 
 
 
+//THIS BLOCK OF CODE IS REPLACED WITH THE CODE BELOW IT WHERE THE VAR MODELS AND CONTROLLERS ARE REQUIRED USING GLOB 
+// require('../app/models/users');
+// require('../app/controllers/users')(app, config);
 
 
 
+// require('../app/models/users'); < THIS CODE IS REPLACED WITH THE ONE BELOW USING GLOB
+//FIRST STEPS WITH MONGOOSE SLIDE 24
   var models = glob.sync(config.root + '/app/models/*.js');
   models.forEach(function (model) {
     require(model);
   });
 
+// require('../app/controllers/users')(app, config); < THIS IS REPLACED WITH THE ONE BELOW USING GLOB
+//FIRST STEPS WITH MONGOOSE SLIDE 24
   var controllers = glob.sync(config.root + '/app/controllers/*.js');
   controllers.forEach(function (controller) {
     require(controller)(app, config);

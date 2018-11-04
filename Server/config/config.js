@@ -1,3 +1,7 @@
+//Add the db property to the each of the configurations in config.js.  
+//The development config uses  a database called helpMe-dev, test uses helpMe-test and production uses helpMe.
+//Mongoose will assume all the default connection details such as the port number.
+//FROM FIRST STEPS WITH MONGOOSE PP, SLIDE 21
 
 var path = require('path'),
     rootPath = path.normalize(__dirname + '/..'),
@@ -26,3 +30,6 @@ var config = {
 };
 
 module.exports = config[env];
+
+
+
