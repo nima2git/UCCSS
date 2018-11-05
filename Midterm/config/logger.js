@@ -24,8 +24,8 @@ const logger = winston.createLogger({
     ]
 });
 
-
-logger.add(new winston.transports.Console({
+//if (process.env.NODE_ENV !== 'production') {   //GET RID OF THIS CODE LINE SO IT LOGS TO CONSOLE FOR W/E REASON
+logger.add(new winston.transports.Console({     
     format: winston.format.combine(
         winston.format.colorize(),
         winston.format.splat(),
@@ -33,6 +33,7 @@ logger.add(new winston.transports.Console({
     )
 }));
 
+//}
 
 
 
