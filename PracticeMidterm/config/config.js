@@ -5,9 +5,9 @@ var path = require('path'),
 var config = {
     // production: {
         root: rootPath,
-        app: { name: 'Todo' },
+        app: { name: 'Todo' },  
         port: 3300,
-        db: 'mongodb://127.0.0.1/todo' 
+        db: 'mongodb://127.0.0.1/todo' //THIS IS WHERE YOU NAME YOUR DATABASE 'todo'
     // }
 };
 
