@@ -1,0 +1,29 @@
+{
+  "name": "initializenodepackages",
+  "version": "1.0.0",
+  "description": "This part is filled out afte ryou write code 'npm init' which initializes node pacakges in your server",
+  "main": "index.js",
+  "scripts": {
+    "test": "no test specified"
+  },
+  "repository": {
+    "type": "git",
+    "url": "UCCSS"
+  },
+  "author": "Nima Lendey",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-async-handler": "^1.1.4",
+    "grunt": "^1.0.3",
+    "grunt-contrib-nodemon": "^0.5.4",
+    "jshint-stylish": "^2.2.1",
+    "mocha": "^5.2.0",
+    "mongoose": "^5.3.9",
+    "morgan": "^1.9.1",
+    "winston": "^3.1.0",
+    "winston-daily-rotate-file": "^3.4.1"
+  }
+}
