@@ -43,9 +43,10 @@ logger.log('info', "Loading Mongoose functionality");
   app.use(express.static(config.root + '/public'));
 
 
-//PROFESSOR ADDED THIS LAST PART TO HELP ROUTE THE FUNCTIONS WRITEN IN APP FOLDERS FOR CONTROLLERS AND MODELS
-  require('../app/models/todo');
-  require('../app/controllers/todo')(app, config);
+
+//NEED THESE TWO REQUIRE CODES IF WE ARE NOT USING GLOB TO LOAD THE MODEL AND CONTROLLER FILES
+  require('../app/models/foos');
+  require('../app/controllers/foos')(app, config);
 
   app.use(function (req, res) {
     logger.log('error', 'File not found');

@@ -1,18 +1,19 @@
 module.exports = function(grunt) { 
 	grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-//THE COMMENTED OUT CODE BELOW USES GRUNT BUT ONLY CONFIGURES 'grunt-contrib-nodemon'    
-        // env : {
-        //   dev : {
-        //     NODE_ENV : 'development'
-        //   },
-        //   production: {
-        //     NODE_ENV : 'production'
-        //   }
-        // },
+        pkg: grunt.file.readJSON('package.json'),  
+        env : {
+          dev : {
+            NODE_ENV : 'development'
+          },
+          production: {
+            NODE_ENV : 'production'
+          }
+        },
         nodemon: {
           dev: { script: 'index.js' }
         },
+        //WE ARE GOING TO REMOVE THE GRUNT jshint, SINCE WE ARE ONLY CONFIGURING grunt-env
+        //AND grunt-contrib-nodemon
         // jshint: {
         //   options: {
         //     reporter: require('jshint-stylish'),
@@ -26,15 +27,15 @@ module.exports = function(grunt) {
     });
   //grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-nodemon');
-  //grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('grunt-env');
 
   grunt.registerTask('default',  [
-   //   'env:dev',
+     'env:dev',
    //   'jshint',
       'nodemon'
     ]);
    grunt.registerTask('production',  [
- //     'env:production',
+     'env:production',
       'nodemon'
     ]);
 

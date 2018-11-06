@@ -3,7 +3,7 @@ var express = require('express'),
     logger = require('../../config/logger'),
     mongoose = require('mongoose')
 // BY CONVENTION THE "Todo" is always uppercase
-    Todo = mongoose.model('todo'),
+    Foo = mongoose.model('Foo'),
     asyncHandler = require('express-async-handler');
 
 
@@ -11,9 +11,9 @@ var express = require('express'),
 module.exports = function (app, config) {
     app.use('/api', router);            // the '/api' adds an api to every URL that gets passed in
 
-    router.get('/todos', asyncHandler(async (req, res) => {
-        logger.log('info', 'Get all todos');
-        let query = Todo.find();
+    router.get('/foos', asyncHandler(async (req, res) => {
+        logger.log('info', 'Get all foos');
+        let query = Foo.find();
         query.sort(req.query.order)
         await query.exec().then(result => {
             res.status(200).json(result);
@@ -21,35 +21,35 @@ module.exports = function (app, config) {
     }));
 
 
-    router.get('/todos/:id', asyncHandler(async (req, res) => {
-        logger.log('info', 'Get todo %s', req.params.id);
-        await Todo.findById(req.params.id).then(result => {
+    router.get('/foos/:id', asyncHandler(async (req, res) => {
+        logger.log('info', 'Get foo %s', req.params.id);
+        await Foo.findById(req.params.id).then(result => {
             res.status(200).json(result);
         })
     }));
 
-    router.post('/todos', asyncHandler(async (req, res) => {
-        logger.log('info', 'Create a todo');
-        var todo = new Todo(req.body);
-        await todo.save()
+    router.post('/foos', asyncHandler(async (req, res) => {
+        logger.log('info', 'Create a foo');
+        var foo = new Foo(req.body);
+        await foo.save()
             .then(result => {
                 res.status(201).json(result);
             })
 
     }));
 
-    router.put('/todos', asyncHandler(async (req, res) => {
-        logger.log('info', 'Update a todo');
-        await Todo.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true })
+    router.put('/foos', asyncHandler(async (req, res) => {
+        logger.log('info', 'Update a foo');
+        await Foo.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true })
             .then(result => {
                 res.status(200).json(result);
             })
     }));
 
 
-    router.delete('/todos/:id', asyncHandler(async (req, res) => {
-        logger.log('info', 'Deleting todo %s', req.params.id);
-        await Todo.remove({ _id: req.params.id })
+    router.delete('/foos/:id', asyncHandler(async (req, res) => {
+        logger.log('info', 'Deleting foo %s', req.params.id);
+        await Foo.remove({ _id: req.params.id })
             .then(result => {
                 res.status(200).json(result);
             })
