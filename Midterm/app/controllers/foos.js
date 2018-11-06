@@ -2,7 +2,7 @@ var express = require('express'),
     router = express.Router(),
     logger = require('../../config/logger'),
     mongoose = require('mongoose')
-// BY CONVENTION THE "Todo" is always uppercase
+// BY CONVENTION THE "Foo" is always uppercase
     Foo = mongoose.model('Foo'),
     asyncHandler = require('express-async-handler');
 
