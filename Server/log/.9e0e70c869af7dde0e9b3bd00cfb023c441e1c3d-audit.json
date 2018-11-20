@@ -6,16 +6,6 @@
     "auditLog": "log/.9e0e70c869af7dde0e9b3bd00cfb023c441e1c3d-audit.json",
     "files": [
         {
-            "date": 1541383224994,
-            "name": "log/error-2018-11-04-20.log",
-            "hash": "1739b8dde8a9e1aa0b8f2fb69fbb05dd"
-        },
-        {
-            "date": 1541383224998,
-            "name": "log/application-2018-11-04-20.log",
-            "hash": "0e35f177473a04af1d5d93d563a9469f"
-        },
-        {
             "date": 1541980695976,
             "name": "log/error-2018-11-11-17.log",
             "hash": "75de98300adb3b46c4a6e01aa3149f34"
@@ -54,6 +44,46 @@
             "date": 1542579110540,
             "name": "log/application-2018-11-18-16.log",
             "hash": "70520d441bd2963f47fe4a7887ddc1e8"
+        },
+        {
+            "date": 1542669705815,
+            "name": "log/error-2018-11-19-17.log",
+            "hash": "2e3c38a06cebc56364b858fb74bb15f7"
+        },
+        {
+            "date": 1542669705822,
+            "name": "log/application-2018-11-19-17.log",
+            "hash": "f0c6dda1128ec9ba15158bb02d687b4e"
+        },
+        {
+            "date": 1542672369526,
+            "name": "log/error-2018-11-19-18.log",
+            "hash": "2f38a98d5200713cbe8d3dc200fbf9e8"
+        },
+        {
+            "date": 1542672369529,
+            "name": "log/application-2018-11-19-18.log",
+            "hash": "d61f34b530ad9427031e0c7c11361f0d"
+        },
+        {
+            "date": 1542685501955,
+            "name": "log/error-2018-11-19-21.log",
+            "hash": "09b261af59ebed0451f044108cc4b083"
+        },
+        {
+            "date": 1542685501957,
+            "name": "log/application-2018-11-19-21.log",
+            "hash": "75b507a2b0b5e9785906277ce08c6373"
+        },
+        {
+            "date": 1542686647962,
+            "name": "log/error-2018-11-19-22.log",
+            "hash": "676d16f566ac484e9e600878137a0b8b"
+        },
+        {
+            "date": 1542686647965,
+            "name": "log/application-2018-11-19-22.log",
+            "hash": "bea90045d3073af422ca3b4aeca64e89"
         }
     ]
 }

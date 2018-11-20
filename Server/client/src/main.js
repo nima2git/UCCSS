@@ -1,5 +1,12 @@
 import environment from './environment';
 
+//2 CODE LINES BELOW IS FROM WEEK 10 AURELIA DATA LAYER PP SLIDE 13
+import regeneratorRuntime from 'regenerator-runtime';
+window.regeneratorRuntime = regeneratorRuntime;
+
+
+
+
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration()

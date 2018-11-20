@@ -7,11 +7,19 @@
 
 
 
-<!--CODE BELOW REPLACES THE ONE ABOVE TO GIVE THE WEB PAGE THE LOG OUT BUTTON FOR USER TO CLICK-->
+<!--
+CODE BELOW REPLACES THE ONE ABOVE TO GIVE THE WEB PAGE THE LOG OUT BUTTON FOR USER TO CLICK
 <template>
 	<h1>${message}</h1>
 	<button click.trigger="logout()">Logout</button>
 </template>
+-->
 
 
 
+
+<template>
+	    <h1>${message}</h1>
+	    <button click.trigger="newUser()">New User</button>
+	     <compose show.bind="showUserEditForm" view="./components/editUser.html"> </compose>
+</template>
