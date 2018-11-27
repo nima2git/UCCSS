@@ -13,14 +13,24 @@ export class App {
     this.router = router;
     config.map([
       {
-        route: ['', 'home'],
+        route: ['', 'landing'],  //WEEK 11 Navigation PP SLIDE 2, updating to make landing the default route & home just another route
+        moduleId: './modules/landing',
+        name: 'Landing'
+      },
+      {
+        route: 'home',
         moduleId: './modules/home',
-        name: 'Home'
+        name: ' Home'
       },
       {
         route: 'users',
         moduleId: './modules/users',
         name: ' Users'
+      },
+      {
+        route: 'helpTickets',
+        moduleId: './modules/helpTickets',
+        name: ' Help Tickets'
       }
     ]);
   }
