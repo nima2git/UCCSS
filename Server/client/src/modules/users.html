@@ -18,6 +18,6 @@ CODE BELOW REPLACES THE ONE ABOVE TO GIVE THE WEB PAGE THE LOG OUT BUTTON FOR US
 
 <template>
 	    <h1>${message}</h1>
-		<compose show.bind="!showUserEditForm" view="./components/tableUsers.html"></compose>
-		<compose show.bind="showUserEditForm" view="./components/editUser.html"></compose>
+	<compose show.bind="showUserEditForm" view="./components/editUser.html"></compose>
+	<compose show.bind="!showUserEditForm" view="./components/tableUsers.html"></compose>
 </template>

@@ -16,6 +16,15 @@ export class User {
             return serverResponse;
         }
     }
+    //CODE BLOCK BELOW FROM WEEK 11 AURELIA Users PP slide 4
+    async getUsers() {
+        let response = await this.data.get(this.USER_SERVICE);
+        if (!response.error) {
+            this.usersArray = response;
+        } else {
+            this.usersArray = [];
+        }
+    }
 
 }
 

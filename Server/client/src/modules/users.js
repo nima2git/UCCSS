@@ -11,16 +11,26 @@
 
 import { inject } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
-import { User } from '../resources/data/user-object'
+import { User } from '../resources/data/user-object';
 
 @inject(Router, User)
+
 export class Users {
-  constructor(router, users) {
+  constructor(router, users){
     this.router = router;
     this.users = users;
-    this.message = 'Users';
+    this.message = 'users';
     this.showUserEditForm = false;
+  };
+
+  async activate(){
+    await this.getUsers();
   }
+  
+  async getUsers(){
+    await this.users.getUsers();
+  }
+  
 
   newUser() {
     this.user = {
@@ -33,10 +43,8 @@ export class Users {
     }
     this.showUserEditForm = true;
 
-  }
+  };
 
-
-  
   async save() {
     if (this.user && this.user.firstName && this.user.lastName
       && this.user.email && this.user.password)
