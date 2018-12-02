@@ -7,15 +7,25 @@ export class User {
         this.USER_SERVICE = 'users';    // THIS PART DOES THE "/USER" IN THE URL
     }
 
-    //CODE BLOCK BELOW FROM WEEK 10 AURELIA DATA LAYER PP SLIDE 12
-    //The async/await construction causes the application to pause until the await
-    //statement is resolved
+    //week11 aurelia USERS pp Slide 19
     async saveUser(user) {
+        let serverResponse;
         if (user) {
-            let serverResponse = await this.data.post(user, this.USER_SERVICE);
+            if (user._id) {
+                serverResponse = await this.data.put(user, this.USER_SERVICE);
+            } else {
+                serverResponse = await this.data.post(user, this.USER_SERVICE);
+            }
             return serverResponse;
         }
     }
+
+    async delete(user) {
+        if (user && user._id) {
+            await this.data.delete(this.USER_SERVICE + '/' + user._id)
+        }
+    }
+
 
 
     //CODE BLOCK BELOW FROM WEEK 11 AURELIA Users PP slide 4

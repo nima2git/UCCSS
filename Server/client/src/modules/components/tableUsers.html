@@ -21,12 +21,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr repeat.for="user of users.usersArray">
+                        <tr  repeat.for="user of users.usersArray">
                             <th scope="row">1</th>
-                            <td>${user.firstName}</td>
-                            <td>${user.lastName}</td>
-                            <td>${user.role}</td>
-                            <td>${user.active}</td>
+                            <td click.trigger="editUser(user)">${user.firstName}</td>
+                            <td click.trigger="editUser(user)">${user.lastName}</td>
+                            <td click.trigger="editUser(user)">${user.role}</td>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" change.delegate="changeActive(user)" checked.bind="user.active"
+                                        type="checkbox" value="" id="defaultCheck1"></div>
+
+                            </td>
                         </tr>
                     </tbody>
                 </table>
