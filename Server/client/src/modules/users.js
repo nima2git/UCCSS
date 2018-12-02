@@ -16,21 +16,30 @@ import { User } from '../resources/data/user-object';
 @inject(Router, User)
 
 export class Users {
-  constructor(router, users){
+  constructor(router, users) {
     this.router = router;
     this.users = users;
-    this.message = 'users';
+    this.message = 'Users';
     this.showUserEditForm = false;
-  };
+  }
 
-  async activate(){
+  //I was originally getting red errors here but after restarting the program the errors are gone.  
+  //when I look at the code from the client side though its giving a error connection refused...
+  //When i look closer at that same error code it says its coming from vendor-bundle.js which is index.html file.
+  async activate() {
     await this.getUsers();
   }
-  
-  async getUsers(){
+
+  //this is from week 11 Aurelia users pp slide 10
+  attached() {
+    feather.replace()
+  }
+
+
+  async getUsers() {
     await this.users.getUsers();
   }
-  
+
 
   newUser() {
     this.user = {
@@ -42,14 +51,20 @@ export class Users {
       password: ""
     }
     this.showUserEditForm = true;
-
-  };
+  }
 
   async save() {
     if (this.user && this.user.firstName && this.user.lastName
       && this.user.email && this.user.password)
       await this.users.saveUser(this.user);
   }
+
+  //This back code is from Week 11 Aurelia Users PP Slide 17, connects to editUser.html so that you can click the back button
+  //after adding a user
+  back() {
+    this.showUserEditForm = false;
+  }
+
 }
 
 

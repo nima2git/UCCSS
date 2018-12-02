@@ -194,7 +194,7 @@ var config = require('./config/config');  // not a node module so we have to add
 var logger = require('./config/logger')
 
 var app = express();
-var port = process.env.port || 3000;
+var port = process.env.port || 5000;
 
 require('./config/express')(app, config);
 

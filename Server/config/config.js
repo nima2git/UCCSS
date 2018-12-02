@@ -11,7 +11,7 @@ var config = {
     development: {
         root: rootPath,
         app: { name: 'UCCSS' },
-        port: 3000,
+        port: 5000,
         db: 'mongodb://127.0.0.1/helpMe-dev'
     },
     test: {
