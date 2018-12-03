@@ -2,11 +2,15 @@
 var express = require('express'),
     router = express.Router(),
     logger = require('../../config/logger'),
-    mongoose = require('mongoose')
-User = mongoose.model('User'),
-    asyncHandler = require('express-async-handler');
+    mongoose = require('mongoose'),
+    User = mongoose.model('User'),
+    asyncHandler = require('express-async-handler'),
+    passportService = require('../../config/passport'),
+    passport = require('passport');
 
 
+var requireLogin = passport.authenticate('local', { session: false });
+var requireAuth = passport.authenticate('jwt', { session: false });
 
 
 module.exports = function (app, config) {
@@ -63,16 +67,41 @@ module.exports = function (app, config) {
             })
     }));
 
-
-    router.delete('/users/:id', asyncHandler(async (req, res) => {
-        logger.log('info', 'Deleting user %s', req.params.id);
-        await User.remove({ _id: req.params.id })
-            .then(result => {
-                res.status(200).json(result);
+    //Week 12 Authentication & Authorization PP slide 9 
+    router.put('/users/password/:userId', requireAuth, function (req, res, next) {
+        logger.log('Update user ' + req.params.userId, 'verbose');
+        dById(req.params.userId)
+            .exec()
+            .then(function (user) {
+                if (req.body.password !== undefined) {
+                    user.password = req.body.password;
+                }
+                user.save()
+                    .then(function (user) {
+                        res.status(200).json(user);
+                    })
+                    .catch(function (err) {
+                        return next(err);
+                    });
             })
-    }));
+            .catch(function (err) {
+                return next(err);
+            });
+    }); 
+    
+
+    
+
+router.delete('/users/:id', asyncHandler(async (req, res) => {
+    logger.log('info', 'Deleting user %s', req.params.id);
+    await User.remove({ _id: req.params.id })
+        .then(result => {
+            res.status(200).json(result);
+        })
+}));
 
 
+router.route('/users/login').post(requireLogin, login);
 
 
 };
