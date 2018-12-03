@@ -2,7 +2,7 @@ var Mongoose = require('mongoose');
 var Schema = Mongoose.Schema;
 var Bcrypt = require('bcryptjs');
 
-var usersSchema = new Schema({
+var userSchema = new Schema({
     firstName: { type: String, require: true },
     lastName: { type: String, require: true },
     active: { type: Boolean, default: true },
@@ -15,7 +15,7 @@ var usersSchema = new Schema({
 
 //WILL KEEP GETTING ERROR UNTIL 'UserSchema' is Defined
 //Added FROM WEEK 12 - AUTHENTICATION & AUTHORIZATION PP SLIDE 5 & 6
-UserSchema.pre('save', function (next) {
+userSchema.pre('save', function (next) {
     var person = this;
     if (this.isModified('password') || this.isNew) {
         Bcrypt.genSalt(10, function (err, salt) {
@@ -35,7 +35,7 @@ UserSchema.pre('save', function (next) {
     }
 });
 
-UserSchema.methods.comparePassword = function (passw, cb) {
+userSchema.methods.comparePassword = function (passw, cb) {
     Bcrypt.compare(passw, this.password, function (err, isMatch) {
         if (err) {
             return cb(err);
@@ -47,4 +47,4 @@ UserSchema.methods.comparePassword = function (passw, cb) {
 
 
 module.exports =
-    Mongoose.model('User', usersSchema);
+    Mongoose.model('User', userSchema);
