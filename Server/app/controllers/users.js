@@ -37,7 +37,7 @@ module.exports = function (app, config) {
 
 
     //REPLACING CODE ABOVE IN PLACE OF CODE BLOCK BELOW TO SHOW MONGOOSE PP SLIDE 32 "ASYNC/AWAIT POST HANDLER"
-    router.post('/users', requireAuth, asyncHandler(async (req, res) => {
+    router.post('/users', asyncHandler(async (req, res) => {
         logger.log('info', 'Creating user');
         var user = new User(req.body);
         await user.save()
