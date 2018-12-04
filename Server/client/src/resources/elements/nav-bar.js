@@ -23,11 +23,21 @@ export class NavBar {
     }
 
     login() {
-        console.log(this.email);
-        console.log(this.password);
-        this.authenticated = true;
+        return this.auth.login(this.email, this.password)
+        .then(response => {
+        this.userObj = response.user;
+        sessionStorage.setItem("userObj", JSON.stringify(this.userObj));
+        this.loginError = "";
+        this.isAuthenticated = this.auth.isAuthenticated();
         this.router.navigate('home');
-    }
+        })
+        .catch(error => {
+        console.log(error);
+        this.authenticated = false;
+        this.loginError = "Invalid credentials.";
+        });
+        };
+        
     logout() {
         this.authenticated = false;
         this.router.navigate('landing');

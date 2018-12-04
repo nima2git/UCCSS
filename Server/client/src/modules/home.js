@@ -10,19 +10,16 @@
 //FROM WEEK 10 AURELIA ROUTING BASICS SLIDE 9
 
 import {inject} from 'aurelia-framework';
-import {Router} from 'aurelia-router';
 
-
-@inject(Router)
 export class Home {
-  constructor(router) {
-	this.router = router;
+  constructor() {
           this.message = 'Home';
   }
 
-  login(){
-	  this.router.navigate('users');
+  attached(){
+    console.log('here')
   }
+
 }
 
 
