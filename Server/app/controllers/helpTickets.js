@@ -3,7 +3,8 @@ var express = require('express'),
     logger = require('../../config/logger'),
     mongoose = require('mongoose')
 User = mongoose.model('User'),
-    asyncHandler = require('express-async-handler');
+    asyncHandler = require('express-async-handler'),
+    passport = require('passport');
 
 var requireAuth = passport.authenticate('jwt', { session: false });
 
