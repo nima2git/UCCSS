@@ -1,0 +1,8 @@
+<template>
+    <tr click.trigger="editHelpTicket(helpTicket)" repeat.for="helpTicket of helpTickets.helpTicketsArray">
+        <td>${helpTicket.title}</td>
+        <td>${helpTicket.status}</td>
+        <td>${helpTicket.personId.firstName} ${helpTicket.personId.lastName} </td>
+        <td>${helpTicket.ownerId.firstName} ${helpTicket.ownerId.lastName} </td>
+    </tr>
+</template>

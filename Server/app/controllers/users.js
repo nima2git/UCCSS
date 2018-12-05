@@ -16,7 +16,9 @@ var requireAuth = passport.authenticate('jwt', { session: false });
 module.exports = function (app, config) {
     app.use('/api', router);            // the '/api' adds an api to every URL that gets passed in
 
-    router.get('/users', requireAuth, asyncHandler(async (req, res) => {
+
+    
+    router.get('/users',requireAuth, asyncHandler(async (req, res) => {
         logger.log('info', 'Get all users');
         let query = User.find();
         query.sort(req.query.order)
@@ -27,7 +29,7 @@ module.exports = function (app, config) {
 
 
     //gotten from Express Routing PP, slide 14, except it is reformated to look like the route above this one
-    router.get('/users/:id', requireAuth, asyncHandler(async (req, res) => {
+    router.get('/users/:id',requireAuth, asyncHandler(async (req, res) => {
         logger.log('info', 'Get user %s', req.params.id);
         await User.findById(req.params.id).then(result => {
             res.status(200).json(result);
@@ -37,7 +39,8 @@ module.exports = function (app, config) {
 
 
     //REPLACING CODE ABOVE IN PLACE OF CODE BLOCK BELOW TO SHOW MONGOOSE PP SLIDE 32 "ASYNC/AWAIT POST HANDLER"
-    router.post('/users', asyncHandler(async (req, res) => {
+    //***If you want to be able to post new data from postman then remove this "requireAuth" temporarily and post new data
+    router.post('/users', requireAuth, asyncHandler(async (req, res) => {
         logger.log('info', 'Creating user');
         var user = new User(req.body);
         await user.save()
@@ -56,6 +59,7 @@ module.exports = function (app, config) {
     }));
 
     //Week 12 Authentication & Authorization PP slide 9 
+    //**IN professors video it was asyncHandler (async before the req, res, next***
     router.put('/users/password/:userId', requireAuth, function (req, res, next) {
         logger.log('Update user ' + req.params.userId, 'verbose');
         dById(req.params.userId)

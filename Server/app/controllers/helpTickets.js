@@ -68,6 +68,21 @@ module.exports = function (app, config) {
             })
     }));
 
+        router.post('/helpTickets', asyncHandler(async (req, res) => {
+                logger.log('info', 'Creating HelpTicket');
+                var helpTicket = new HelpTicket(req.body.helpTicket);
+                await helpTicket.save()
+                    .then(result => {
+                        req.body.content.helpTicketId = result._id;
+                        var helpTicketContent = new HelpTicketContent(req.body.content);
+                        helpTicketContent.save()
+                            .then(content => {
+                                res.status(201).json(result);
+                            })
+                    })
+            }));
+        
+
 
 };
 
