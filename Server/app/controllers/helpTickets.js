@@ -2,7 +2,8 @@ var express = require('express'),
     router = express.Router(),
     logger = require('../../config/logger'),
     mongoose = require('mongoose')
-User = mongoose.model('User'),
+    HelpTicket = mongoose.model('HelpTicket'),
+    HelpTicketContent = mongoose.model("HelpTicketContent")
     asyncHandler = require('express-async-handler'),
     passport = require('passport');
 
