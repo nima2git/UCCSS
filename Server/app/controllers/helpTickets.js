@@ -2,9 +2,9 @@ var express = require('express'),
     router = express.Router(),
     logger = require('../../config/logger'),
     mongoose = require('mongoose')
-    HelpTicket = mongoose.model('HelpTicket'),
+HelpTicket = mongoose.model('HelpTicket'),
     HelpTicketContent = mongoose.model("HelpTicketContent")
-    asyncHandler = require('express-async-handler'),
+asyncHandler = require('express-async-handler'),
     passport = require('passport');
 
 var requireAuth = passport.authenticate('jwt', { session: false });
@@ -17,7 +17,11 @@ module.exports = function (app, config) {
     router.get('/helpTickets', requireAuth, asyncHandler(async (req, res) => {
         logger.log('info', 'Get all HelpTickets');
         let query = HelpTicket.find();
-        query.sort(req.query.order)
+        query
+            .sort(req.query.order)
+            .populate({ path: 'personId', model: 'User', select: 'lastName firstName fullName' })
+            .populate({ path: 'ownerId', model: 'User', select: 'lastName firstName fullName' });
+
         if (req.query.status) {
             if (req.query.status[0] == '-') {
                 query.where('status').ne(req.query.status.substring(1));
@@ -39,16 +43,7 @@ module.exports = function (app, config) {
         })
     }));
 
-    //CREATE A HELP TICKET
-    router.post('/helpTickets', requireAuth, asyncHandler(async (req, res) => {
-        logger.log('info', 'Creating a help ticket');
-        var HelpTicket = new User(req.body);
-        await HelpTicket.save()
-            .then(result => {
-                res.status(201).json(result);
-            })
 
-    }));
 
     //UPDATE A HELP TICKET
     router.put('/helpTickets', requireAuth, asyncHandler(async (req, res) => {
@@ -69,21 +64,32 @@ module.exports = function (app, config) {
             })
     }));
 
-        router.post('/helpTickets', asyncHandler(async (req, res) => {
-                logger.log('info', 'Creating HelpTicket');
-                var helpTicket = new HelpTicket(req.body.helpTicket);
-                await helpTicket.save()
-                    .then(result => {
-                        req.body.content.helpTicketId = result._id;
-                        var helpTicketContent = new HelpTicketContent(req.body.content);
-                        helpTicketContent.save()
-                            .then(content => {
-                                res.status(201).json(result);
-                            })
-                    })
-            }));
-        
+    //CREATE A HELP TICKET
+    router.post('/helpTickets', asyncHandler(async (req, res) => {
+        logger.log('info', 'Creating HelpTicket');
+        var helpTicket = new HelpTicket(req.body.helpTicket);
+        console.log(helpTicket)
+        await helpTicket.save()
+            .then(result => {
+                req.body.content.helpTicketId = result._id;
+                var helpTicketContent = new HelpTicketContent(req.body.content);
+                helpTicketContent.save()
+                    .then(content => {
+                        res.status(201).json(result);
+                    })
+            })
+    }));
 
+    router.get('/helpTicketContents/helpTicket/:id', asyncHandler(async (req, res) => {
+        logger.log('info', 'Getting a HelpTickets Content');
+        let query = HelpTicketContent.find({ helpTicketId: req.params.id })
+            .sort('-dateCreated')
+            .populate({ path: 'personId', model: 'User', select: 'lastName firstName fullName' })
+
+        await query.exec().then(result => {
+            res.status(200).json(result);
+        })
+    }));
 
 };
 

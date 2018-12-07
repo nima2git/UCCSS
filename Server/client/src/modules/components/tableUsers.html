@@ -13,7 +13,6 @@
                         </tr>
 
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">First</th>
                             <th scope="col">Last</th>
                             <th scope="col">Role</th>
@@ -22,7 +21,6 @@
                     </thead>
                     <tbody>
                         <tr  repeat.for="user of users.usersArray">
-                            <th scope="row">1</th>
                             <td click.trigger="editUser(user)">${user.firstName}</td>
                             <td click.trigger="editUser(user)">${user.lastName}</td>
                             <td click.trigger="editUser(user)">${user.role}</td>
