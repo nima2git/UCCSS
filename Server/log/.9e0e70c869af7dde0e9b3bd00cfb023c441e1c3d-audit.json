@@ -284,6 +284,26 @@
             "date": 1544390103131,
             "name": "log/application-2018-12-09-15.log",
             "hash": "bbe8a3cc35ad79ca6eae2dbabe423adf"
+        },
+        {
+            "date": 1544395196445,
+            "name": "log/error-2018-12-09-16.log",
+            "hash": "708bd04671e0ee1f5317b8365bb90ba3"
+        },
+        {
+            "date": 1544395196448,
+            "name": "log/application-2018-12-09-16.log",
+            "hash": "d3514626be94b514db4a602f7d6951a8"
+        },
+        {
+            "date": 1544396460992,
+            "name": "log/error-2018-12-09-17.log",
+            "hash": "e29b766ec6c208c73850733fb9bce85e"
+        },
+        {
+            "date": 1544396461012,
+            "name": "log/application-2018-12-09-17.log",
+            "hash": "2aee01774a2ccc178d73c52d8bd5ac47"
         }
     ]
 }

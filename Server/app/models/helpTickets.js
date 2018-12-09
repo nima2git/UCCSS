@@ -17,8 +17,8 @@ module.exports = Mongoose.model('HelpTicketContent', HelpTicketContentSchema)
 
 var HelpTicketSchema = new Schema({
     title: { type: String},
-    personID: {type: Schema.Types.ObjectId},
-    ownerID: {type: Schema.Types.ObjectId},
+    personId: {type: Schema.Types.ObjectId},
+    ownerId: {type: Schema.Types.ObjectId},
     status: {type: String, enum: ['new','inProcess', 'closed']},
     dateCreated: {type: Date, default: Date.now}
 });
