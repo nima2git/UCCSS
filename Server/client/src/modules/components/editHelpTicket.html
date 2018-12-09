@@ -14,8 +14,8 @@
                             id="title" placeholder="Title">
                     </div>
                     <div class="form-group">
-                        <label for="role" value.bind="helpTicket.status">Status</label>
-                        <select class="form-control" id="status">
+                        <label for="status">Status</label>
+                        <select value.bind="helpTicket.status" class="form-control" id="status">
                             <option value="new">New</option>
                             <option value="inProcess">In Process</option>
                             <option value="closed">Closed</option>
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="form-group" style="margin-top:20px;">
-                        <label for="content">Description</label>
+                        <label for="helpTicketContent.content">Description</label>
                         <textarea value.bind="helpTicketContent.content" class="form-control" rows="8"></textarea>
                     </div>
 

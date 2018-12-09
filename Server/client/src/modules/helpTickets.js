@@ -42,16 +42,15 @@ export class HelpTickets {
             ownerId: "a1a1a1a1a1a1a1a1a1a1a1a1",
             status: 'new'
         };
-
-
-
-
+        
         this.helpTicketContent = {
             personId: this.userObj._id,
             content: ""
         };
         this.showEditForm();
     }
+
+    
     async editHelpTicket(helpTicket) {
         this.helpTicket = helpTicket;
         this.helpTicketContent = {
@@ -74,6 +73,7 @@ export class HelpTickets {
             this.back();
         }
     }
+
     async delete() {
         if (this.helpTicket) {
           await this.helpTickets.delete(this.helpTicket);
