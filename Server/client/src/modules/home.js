@@ -13,7 +13,7 @@ import {inject} from 'aurelia-framework';
 
 export class Home {
   constructor() {
-          this.message = 'Home';
+          this.message = 'Home is where the heart is :)';
   }
 
   attached(){

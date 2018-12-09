@@ -2,9 +2,9 @@ var express = require('express'),
     router = express.Router(),
     logger = require('../../config/logger'),
     mongoose = require('mongoose')
-HelpTicket = mongoose.model('HelpTicket'),
+    HelpTicket = mongoose.model('HelpTicket'),
     HelpTicketContent = mongoose.model("HelpTicketContent")
-asyncHandler = require('express-async-handler'),
+    asyncHandler = require('express-async-handler'),
     passport = require('passport');
 
 var requireAuth = passport.authenticate('jwt', { session: false });
