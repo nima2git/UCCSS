@@ -27,13 +27,29 @@ export class HelpTickets {
         setTimeout(() => { $("#firstName").focus(); }, 500);
     }
 
-    back(){
+    back() {
         this.showHelpTicketEditForm = false;
+        this.showHelpTicketDisplayForm = false;
+        this.filesToUpload = new Array();
+        this.files = new Array();
+
     }
+
+    changeFiles() {
+        this.filesToUpload = this.filesToUpload ? this.filesToUpload : new Array();
+        for (var i = 0; i < this.files.length; i++) {
+            let addFile = true;
+            this.filesToUpload.forEach(item => {
+                if (item.name === this.files[i].name) addFile = false;
+            })
+            if (addFile) this.filesToUpload.push(this.files[i]);
+        }
+    }
+
 
     async getHelpTickets() {
         await this.helpTickets.getHelpTickets(this.userObj);
-      }
+    }
 
     newHelpTicket() {
         this.helpTicket = {
@@ -42,7 +58,7 @@ export class HelpTickets {
             ownerId: "a1a1a1a1a1a1a1a1a1a1a1a1",
             status: 'new'
         };
-        
+
         this.helpTicketContent = {
             personId: this.userObj._id,
             content: ""
@@ -50,7 +66,7 @@ export class HelpTickets {
         this.showEditForm();
     }
 
-    
+
     async editHelpTicket(helpTicket) {
         this.helpTicket = helpTicket;
         this.helpTicketContent = {
@@ -62,24 +78,39 @@ export class HelpTickets {
     }
 
 
+    // async save() {
+    //     if (this.helpTicket && this.helpTicket.title && this.helpTicketContent && this.helpTicketContent.content) {
+    //         if (this.userObj.role !== 'user') {
+    //             this.helpTicket.ownerId = this.userObj._id;
+    //         }
+    //         let helpTicket = { helpTicket: this.helpTicket, content: this.helpTicketContent }
+    //         await this.helpTickets.saveHelpTicket(helpTicket);
+    //         await this.getHelpTickets();
+    //         this.back();
+    //     }
+    // }
+
     async save() {
         if (this.helpTicket && this.helpTicket.title && this.helpTicketContent && this.helpTicketContent.content) {
-            if (this.userObj.role !== 'user') {
+            if (this.userObj.role === 'staff' || this.userObj.role === 'admin') {
                 this.helpTicket.ownerId = this.userObj._id;
             }
             let helpTicket = { helpTicket: this.helpTicket, content: this.helpTicketContent }
-            await this.helpTickets.saveHelpTicket(helpTicket);
+            let serverResponse = await this.helpTickets.saveHelpTicket(helpTicket);
+            if (this.filesToUpload && this.filesToUpload.length > 0) this.helpTickets.uploadFile(this.filesToUpload,
+                sponse.contentID);
             await this.getHelpTickets();
             this.back();
         }
     }
+        
 
     async delete() {
         if (this.helpTicket) {
-          await this.helpTickets.delete(this.helpTicket);
-          await this.getHelpTickets();
-          this.back();
+            await this.helpTickets.delete(this.helpTicket);
+            await this.getHelpTickets();
+            this.back();
         }
-      }
+    }
 
 }

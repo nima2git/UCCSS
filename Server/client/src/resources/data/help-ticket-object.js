@@ -6,7 +6,7 @@ export class HelpTicket {
     constructor(data) {
         this.data = data;
         this.HELP_TICKET_SERVICE = 'helpTickets';    // THIS PART DOES THE "/HELPTICKET" IN THE URL
-        this.HELP_TICKETCONTENT_SERVICE = 'helpTicketContents';
+        this.HELP_TICKET_CONTENT_SERVICE = 'helpTicketContents';
     }
 
     async getHelpTickets(userObj) {
@@ -52,9 +52,9 @@ export class HelpTicket {
         }
     }
 
-        async uploadFile(files, id) {
-            await this.data.uploadFiles(files, this.HELP_TICKETCONTENT_SERVICE + "/upload/" + id);
+    async uploadFile(files, id) {
+            await this.data.uploadFiles(files, this.HELP_TICKET_CONTENT_SERVICE + "/upload/" + id);
 
-        }
+    }
 
 }

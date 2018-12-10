@@ -8,7 +8,7 @@ export class DataServices {
     constructor(http) {
 
         this.httpClient = http;
-        this.BASE_URL = "http://localhost:5000/api/";   //this part does the /api in the url
+        this.BASE_URL = "http://git.ucc.uwm.edu/";   //where we will connect to the back end
 
         //CODE BLOCK BELOW FROM WEEK 10 AURELIA DATA LAYER PP SLIDE 6
         this.httpClient.configure(config => {

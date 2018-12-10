@@ -1,0 +1,36 @@
+<template>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th colspan="4">
+                                <span click.trigger="newFoo()"><i data-feather="plus"></i></span>
+                                <span click.trigger="getFoos()" style="margin-left:5px;"><i data-feather="refresh-cw"></i></span>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col">Foo</th>
+                            <th scope="col">Woo</th>
+                            <th scope="col">Active</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr repeat.for="foo of foos.foosArray">
+                            <td click.trigger="editFoo(foo)">${foo.foo}</td>
+                            <td click.trigger="editFoo(foo)">${foo.woo}</td>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" change.delegate="changeActive(user)" checked.bind="user.active"
+                                        type="checkbox" value="" id="defaultCheck1"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>
