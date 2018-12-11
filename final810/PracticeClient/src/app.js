@@ -9,9 +9,9 @@ export class App {
     this.router = router;
     config.map([
       {
-        route: ['', 'foos'],  //WEEK 11 Navigation PP SLIDE 2, updating to make landing the default route & home just another route
-        moduleId: './modules/foos',
-        name: 'Foos'
+        route: ['', 'todos'],  //WEEK 11 Navigation PP SLIDE 2, updating to make landing the default route & home just another route
+        moduleId: './modules/todos',
+        name: 'Todos'
       }
     ]);
   }

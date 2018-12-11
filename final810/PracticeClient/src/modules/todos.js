@@ -11,86 +11,87 @@
 
 import { inject } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
-import { Foo } from '../resources/data/foo-object';
+import { Todo } from '../resources/data/todo-object';
 
-@inject(Router, Foo)
+@inject(Router, Todo)
 
-export class Foos {
-  constructor(router, foos) {
+export class Todos {
+  constructor(router, todos) {
     this.router = router;
-    this.foos = foos;
-    this.message = 'Foos';
-    this.showFooEditForm = false;
+    this.todos = todos;
+    this.message = 'Todos';
+    this.showTodoEditForm = false;
   }
 
   //I was originally getting red errors here but after restarting the program the errors are gone.  
   //when I look at the code from the client side though its giving a error connection refused...
   //When i look closer at that same error code it says its coming from vendor-bundle.js which is index.html file.
   async activate() {
-    await this.getFoos();
+    await this.getTodos();
   }
 
-  //this is from week 11 Aurelia users(foos) pp slide 10
+  //this is from week 11 Aurelia users(todo) pp slide 10
   attached() {
     feather.replace()
   }
 
 
-  async getFoos() {
-    await this.foos.getFoos();
+  async getTodos() {
+    await this.todos.getTodos();
   }
 
 
-  newFoo() {
-    this.foo = {
-      foo: "",
-      woo: "boo"
+  newTodo() {
+    this.todo = {
+      todo: "",
+      priotity: "High",
+      done: true,
     }
     this.openEditForm();
   }
 
 
-  editFoo(foo) {
-    this.foo = foo;
+  editTodo(todo) {
+    this.todo = todo;
     this.openEditForm();
   }
 
   openEditForm() {
-    this.showFooEditForm = true;
-    setTimeout(() => { $("#foo").focus(); }, 500);
+    this.showTodoEditForm = true;
+    setTimeout(() => { $("#todo").focus(); }, 500);
   }
 
-  changeActive(foo) {
-    this.foo = foo;
+  changeDone(todo) {
+    this.todo = todo;
     this.save();
   }
 
 
   async save() {
-    if (this.foo && this.foo.foo && this.foo.woo)
-      await this.foos.saveFoo(this.foo);
-    await this.getFoos();
+    if (this.todo && this.todo.todo && this.todo.priotity)
+      await this.todos.saveTodo(this.todo);
+    await this.getTodos();
     this.back();
   }
 
   async delete() {
-    if (this.foo) {
-      await this.foos.delete(this.foo);
-      await this.getFoos();
+    if (this.todo) {
+      await this.todos.delete(this.todo);
+      await this.getTodos();
       this.back();
     }
   }
 
 
+
+  
   //This back code is from Week 11 Aurelia Users PP Slide 17, connects to editUser.html so that you can click the back button
-  //after adding a user
+  //after adding a todo
   back() {
-    this.showFooEditForm = false;
+    this.showTodoEditForm = false;
   }
 
 }
-
-
 
 
 

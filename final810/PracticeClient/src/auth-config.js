@@ -1,6 +1,6 @@
 var authConfig = {
     baseUrl: "http://git.ucc.uwm.edu/",
-    loginUrl: '/foos/login',
+    loginUrl: '/todos/login',
     tokenName: 'token',
     authHeader: 'Authorization',
     authToken: '',
