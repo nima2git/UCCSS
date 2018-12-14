@@ -1,0 +1,23 @@
+<!--
+<template>
+	<h1>${message}</h1>  
+</template>
+-->
+<!-- the ${message} is taking the "User" from the users.js file -->
+
+
+
+<!--
+CODE BELOW REPLACES THE ONE ABOVE TO GIVE THE WEB PAGE THE LOG OUT BUTTON FOR USER TO CLICK
+<template>
+	<h1>${message}</h1>
+	<button click.trigger="logout()">Logout</button>
+</template>
+
+-->
+
+<template>
+	    <h1>${message}</h1>
+	<compose show.bind="showUserEditForm" view="./components/editUser.html"></compose>
+	<compose show.bind="!showUserEditForm" view="./components/tableUsers.html"></compose>
+</template>
