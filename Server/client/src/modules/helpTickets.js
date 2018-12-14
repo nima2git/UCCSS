@@ -92,7 +92,7 @@ export class HelpTickets {
 
     async save() {
         if (this.helpTicket && this.helpTicket.title && this.helpTicketContent && this.helpTicketContent.content) {
-            if (this.userObj.role === 'staff' || this.userObj.role === 'admin') {
+            if (this.userObj.role === 'staff' || this.userObj.role === 'admin' ) {
                 this.helpTicket.ownerId = this.userObj._id;
             }
             let helpTicket = { helpTicket: this.helpTicket, content: this.helpTicketContent }
