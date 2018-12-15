@@ -49,7 +49,6 @@ module.exports = function (app, config) {
 
 
 
-    //UPDATE A HELP TICKET
     router.put('/taskManagers', asyncHandler(async (req, res) => {
         logger.log('info', 'Updating TaskManager');
         console.log(req.body)
@@ -70,7 +69,7 @@ module.exports = function (app, config) {
 
 
 
-    //DELETE A task mananger
+ 
     router.delete('/taskManagers/:id', requireAuth, asyncHandler(async (req, res) => {
         logger.log('info', 'Deleting member %s', req.params.id);
         await TaskManager.remove({ _id: req.params.id })
@@ -79,7 +78,7 @@ module.exports = function (app, config) {
             })
     }));
 
-    //CREATE A task manager
+
     router.post('/taskManagers', asyncHandler(async (req, res) => {
         logger.log('info', 'Creating TaskManager');
         var taskManager = new TaskManager(req.body.taskManager);
@@ -109,7 +108,6 @@ module.exports = function (app, config) {
 
 
 
-//This code block from week 13 file uploads slide 3
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         var path = config.uploads + '/taskManagers';

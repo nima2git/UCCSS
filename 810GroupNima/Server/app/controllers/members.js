@@ -1,4 +1,3 @@
-//from Express routing pp, slide 11: Respond to Member
 var express = require('express'),
     router = express.Router(),
     logger = require('../../config/logger'),
@@ -28,7 +27,6 @@ module.exports = function (app, config) {
     }));
 
 
-    //gotten from Express Routing PP, slide 14, except it is reformated to look like the route above this one
     router.get('/members/:id',requireAuth, asyncHandler(async (req, res) => {
         logger.log('info', 'Get members %s', req.params.id);
         await Member.findById(req.params.id).then(result => {
@@ -37,10 +35,7 @@ module.exports = function (app, config) {
     }));
 
 
-
-    //REPLACING CODE ABOVE IN PLACE OF CODE BLOCK BELOW TO SHOW MONGOOSE PP SLIDE 32 "ASYNC/AWAIT POST HANDLER"
-    //***If you want to be able to post new data from postman then remove this "requireAuth" temporarily and post new data
-    router.post('/members', requireAuth, asyncHandler(async (req, res) => {
+    router.post('/members', asyncHandler(async (req, res) => {
         logger.log('info', 'Creating member');
         var member = new Member(req.body);
         await member.save()
@@ -58,8 +53,7 @@ module.exports = function (app, config) {
             })
     }));
 
-    //Week 12 Authentication & Authorization PP slide 9 
-    //**IN professors video it was asyncHandler (async before the req, res, next***
+
     router.put('/members/password/:memberId', requireAuth, function (req, res, next) {
         logger.log('Update member ' + req.params.memberId, 'verbose');
         dById(req.params.memberId)

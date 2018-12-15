@@ -5,16 +5,14 @@ var Bcrypt = require('bcryptjs');
 var memberSchema = new Schema({
     firstName: { type: String, require: true },
     lastName: { type: String, require: true },
-    active: { type: Boolean, default: true },
-    role: { type: String, enum: ['analyst', 'developer', 'manager'] },
+    allocated: { type: Boolean, default: true },
+    role: { type: String, enum: ['analyst', 'developer', 'manager', 'none'] },
     dateRegistered: { type: Date, default: Date.now },
     email: { type: String, require: true, unique: true },
     password: { type: String, require: true }
 });
 
 
-//WILL KEEP GETTING ERROR UNTIL 'UserSchema' is Defined
-//Added FROM WEEK 12 - AUTHENTICATION & AUTHORIZATION PP SLIDE 5 & 6
 memberSchema.pre('save', function (next) {
     var person = this;
     if (this.isModified('password') || this.isNew) {
@@ -48,3 +46,10 @@ memberSchema.methods.comparePassword = function (passw, cb) {
 
 module.exports =
     Mongoose.model('Member', memberSchema);
+
+
+
+
+
+
+    

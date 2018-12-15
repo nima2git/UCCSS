@@ -6,8 +6,8 @@
                     <thead>
                         <tr>
                             <th colspan="4">
-                                <span click.trigger="newHelpTicket()"><i data-feather="plus"></i></span>
-                                <span click.trigger="getHelpTickets()" style="margin-left:5px;"><i data-feather="refresh-cw"></i></span>
+                                <span click.trigger="newTaskManager()"><i data-feather="plus"></i></span>
+                                <span click.trigger="getTaskManagers()" style="margin-left:5px;"><i data-feather="refresh-cw"></i></span>
                             </th>
                         </tr>
                         <tr>
@@ -18,12 +18,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr click.trigger="editHelpTicket(helpTicket)" repeat.for="helpTicket of helpTickets.helpTicketsArray">
+                        <tr click.trigger="editTaskManager(taskManager)" repeat.for="taskManager of taskManager.taskManagersArray">
                            
-                            <td>${helpTicket.title}</td>
-                            <td>${helpTicket.status}</td>
-                            <td>${helpTicket.personId.firstName} ${helpTicket.personId.lastName} </td>
-                            <td>${helpTicket.ownerId.firstName} ${helpTicket.ownerId.lastName} </td>
+                            <td>${taskManager.title}</td>
+                            <td>${taskManager.status}</td>
+                            <td>${taskManager.personId.firstName} ${taskManager.personId.lastName} </td>
+                            <td>${taskManager.ownerId.firstName} ${taskManager.ownerId.lastName} </td>
                         </tr>
                         </td>
                         </tr>

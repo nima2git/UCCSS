@@ -5,17 +5,17 @@
                 <div class="list-group-item">
                     <span click.trigger="back()"><i data-feather="arrow-left-circle"></i></span>
                     <span click.trigger="save()" style="margin-left:5px;"><i data-feather="save"></i></span>
-                    <span show.bind="helpTicket._id" click.trigger="delete()"><i data-feather="trash-2"></i></span>
+                    <span show.bind="taskManager._id" click.trigger="delete()"><i data-feather="trash-2"></i></span>
                 </div>
                 <form>
                     <div class="form-group" style="margin-top:20px;">
                         <label for="title">Title</label>
-                        <input type="text" readonly.bind="helpTicket._id" class="form-control" value.bind="helpTicket.title"
+                        <input type="text" readonly.bind="taskManager._id" class="form-control" value.bind="taskManager.title"
                             id="title" placeholder="Title">
                     </div>
                     <div class="form-group">
                         <label for="status">Status</label>
-                        <select value.bind="helpTicket.status" class="form-control" id="status">
+                        <select value.bind="taskManager.status" class="form-control" id="status">
                             <option value="new">New</option>
                             <option value="inProcess">In Process</option>
                             <option value="closed">Closed</option>
@@ -39,23 +39,23 @@
 
 
                     <div class="form-group" style="margin-top:20px;">
-                        <label for="content">Description</label>
-                        <textarea value.bind="helpTicketContent.content" class="form-control" rows="8"></textarea>
+                        <label for="task">Description</label>
+                        <textarea value.bind="taskManagerTask.task" class="form-control" rows="8"></textarea>
                     </div>
 
-                    <div class="card" repeat.for="content of helpTickets.helpTicketsContentArray">
+                    <div class="card" repeat.for="task of taskManagers.taskManagersTaskArray">
                         <div class="card-body">
                             <div class="row" style="padding:3px;">
                                 <div class="col-3">
-                                    <span innerhtml.bind="content.dateCreated | formatDate"></span><br />
-                                    ${content.personId.firstName} ${content.personId.lastName}
+                                    <span innerhtml.bind="task.dateCreated | formatDate"></span><br />
+                                    ${task.personId.firstName} ${task.personId.lastName}
                                 </div>
                                 <div class="col-9" style="border-left-style: solid;border-left-width: 1px;">
-                                    ${content.content}
+                                    ${task.task}
                                 </div>
                                 <div>
-                                    <a href="http://localhost:5000/uploadedFiles/helpTickets/${content.file.fileName}"
-                                        target="_blank">${content.file.originalFileName}</a>
+                                    <a href="http://localhost:5000/uploadedFiles/taskManagers/${task.file.fileName}"
+                                        target="_blank">${task.file.originalFileName}</a>
                                 </div>
                             </div>
                         </div>

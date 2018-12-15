@@ -1,4 +1,3 @@
-//FROM WEEK 10 AURELIA DATA LAYER PP 
 import { inject } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
 
